@@ -15,6 +15,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { Provider } from "react-redux";
+import NotFound from "./pages/NotFound.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -25,6 +26,7 @@ const router = createBrowserRouter(
         <Route path="payment" element={<Payment />} />
       </Route>
       <Route path="" element={<Private />}></Route>
+      <Route path="*" element={<NotFound />}></Route>
     </Route>
   )
 );
