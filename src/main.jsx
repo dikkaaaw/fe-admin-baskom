@@ -4,6 +4,7 @@ import App from "./App.jsx";
 import store from "./store.jsx";
 import Login from "./pages/Login.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
+import Payment from "./pages/Payment.jsx";
 import Layout from "./components/Layout.jsx";
 import Private from "./private/private.jsx";
 import "./index.css";
@@ -20,7 +21,8 @@ const router = createBrowserRouter(
     <Route path="/" element={<App />}>
       <Route path="" element={<Login />} />
       <Route path="" element={<Layout />}>
-        <Route path="dashboard" element={<Dashboard />}></Route>
+        <Route path="dashboard" element={<Dashboard />} />
+        <Route path="payment" element={<Payment />} />
       </Route>
       <Route path="" element={<Private />}></Route>
     </Route>
