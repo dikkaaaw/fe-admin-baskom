@@ -97,7 +97,10 @@ const Navbar = () => {
                       </span>
                     </a>
                   </li>
-                  <li className="hover:bg-slate-600">
+                  <li
+                    className="hover:bg-slate-600"
+                    style={{ marginTop: "40px" }}
+                  >
                     <a
                       href=""
                       onClick={() => showModalLogoutHandler()}
