@@ -32,7 +32,7 @@ const Payment = () => {
       <div>
         <div className="py-5 mx-auto lg:flex items-center text-center justify-between">
           <h2 className="font-bold text-lg mb-4 font-poppins">
-            Status Pembayaran
+            Kelola Pembayaran
           </h2>
           <div className="text-dark-blue flex items-center justify-between gap-8">
             <Box
@@ -92,7 +92,7 @@ const Payment = () => {
               <TextField
                 id="input-with-sx"
                 className="font-poppins"
-                label="Search by name"
+                label="Search by email"
                 variant="standard"
               />
             </Box>
