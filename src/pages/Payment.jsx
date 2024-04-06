@@ -11,7 +11,7 @@ import CircularProgress from "@mui/material/CircularProgress"; // Import the Cir
 
 const Payment = () => {
   const [anchorEl, setAnchorEl] = useState(null);
-  const [loading, setLoading] = useState(true); // Add a loading state
+  const [isLoading, setIsLoading] = useState(true); // Add a loading state
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -21,10 +21,9 @@ const Payment = () => {
     setAnchorEl(null);
   };
 
-  // Add a useEffect hook to set the loading state to false after 3 seconds
   useEffect(() => {
     const timer = setTimeout(() => {
-      setLoading(false);
+      setIsLoading(false);
     }, 1000);
 
     return () => {
@@ -40,7 +39,7 @@ const Payment = () => {
           Check out latest updates
         </p>
       </div>
-      {loading ? (
+      {isLoading ? (
         <Box
           sx={{
             display: "flex",
