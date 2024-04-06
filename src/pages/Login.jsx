@@ -22,7 +22,7 @@ const Login = () => {
     <div className="flex items-center justify-center h-screen">
       <img
         src={imgLogin}
-        alt=""
+        alt="image-login"
         className="lg:flex md:flex hidden items-center justify-center w-2/5 bg-slate-800 h-full opacity-80 object-cover"
       />
       <div className="flex items-center justify-center w-3/5">
