@@ -6,6 +6,7 @@ import Login from "./pages/Login.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 import Payment from "./pages/Payment.jsx";
 import NotFound from "./pages/NotFound.jsx";
+import Product from "./pages/Product.jsx";
 import User from "./pages/User.jsx";
 import Layout from "./components/Layout.jsx";
 import Private from "./private/private.jsx";
@@ -26,6 +27,7 @@ const router = createBrowserRouter(
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="payment" element={<Payment />} />
         <Route path="user" element={<User />} />
+        <Route path="product" element={<Product />} />
       </Route>
       <Route path="" element={<Private />}></Route>
       <Route path="*" element={<NotFound />}></Route>
