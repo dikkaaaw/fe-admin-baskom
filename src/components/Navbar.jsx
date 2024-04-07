@@ -66,7 +66,7 @@ const Navbar = () => {
                   </li>
                   <li className="hover:bg-slate-700">
                     <a
-                      href="/course"
+                      href="/user"
                       className="flex items-center px-8 py-2 space-x-3 rounded-md"
                     >
                       <FaUserAlt className="me-6" />
@@ -77,7 +77,7 @@ const Navbar = () => {
                   </li>
                   <li className="hover:bg-slate-700">
                     <a
-                      href="/user"
+                      href="/product"
                       className="flex items-center px-8 py-2 space-x-3 rounded-md"
                     >
                       <FaChalkboard className="me-6" />
@@ -88,7 +88,7 @@ const Navbar = () => {
                   </li>
                   <li className="hover:bg-slate-700">
                     <a
-                      href="/notification"
+                      href="/payment"
                       className="flex items-center px-8 py-2 space-x-3 rounded-md"
                     >
                       <FaMoneyBill className="me-6" />
