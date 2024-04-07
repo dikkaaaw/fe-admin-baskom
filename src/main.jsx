@@ -8,6 +8,7 @@ import Payment from "./pages/Payment.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import Product from "./pages/Product.jsx";
 import User from "./pages/User.jsx";
+import UserProfile from "./pages/UserProfile.jsx";
 import Layout from "./components/Layout.jsx";
 import Private from "./private/private.jsx";
 import "./index.css";
@@ -28,6 +29,7 @@ const router = createBrowserRouter(
         <Route path="payment" element={<Payment />} />
         <Route path="user" element={<User />} />
         <Route path="product" element={<Product />} />
+        <Route path="user-profile" element={<UserProfile />} />
       </Route>
       <Route path="" element={<Private />}></Route>
       <Route path="*" element={<NotFound />}></Route>
