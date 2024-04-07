@@ -33,7 +33,7 @@ const UserProfile = () => {
           <h1 className="text-3xl font-bold font-poppins mb-4">
             Account Settings
           </h1>
-          <Card className="py-10 max-w-6xl">
+          <Card className="py-6 px-2 max-w-6xl">
             <div className="container flex flex-row justify-between gap-4">
               <div className="w-1/2">
                 <p className="text-md font-semibold font-poppins">
@@ -104,8 +104,14 @@ const UserProfile = () => {
                   </button>
                 </form>
               </div>
-              <div>
-                <div>
+              <div className="w-1/3">
+                <br />
+                <img
+                  src="/logo-app.png"
+                  alt="photo-profile"
+                  className="w-20 h-20 lg:w-40 lg:h-40"
+                />
+                <div className="mt-4">
                   <Label
                     htmlFor="file-upload-helper-text"
                     value="Change avatar"
@@ -114,15 +120,8 @@ const UserProfile = () => {
                 <FileInput
                   id="file-upload-helper-text"
                   helperText="PNG or JPG (Max. 2 MB)."
+                  sizing="sm"
                 />
-              </div>
-              <div>
-                <br />
-                <Card
-                  className="w-40 h-40"
-                  imgAlt="profile-photo"
-                  imgSrc="/images/blog/image-1.jpg"
-                ></Card>
               </div>
             </div>
           </Card>
