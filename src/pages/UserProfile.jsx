@@ -7,13 +7,16 @@ const UserProfile = () => {
       <Card className="py-10 max-w-6xl">
         <div className="container flex flex-row justify-between gap-4">
           <div className="w-1/2">
-            <p>Edit your profile</p>
+            <p className="text-md font-semibold font-poppins">
+              Edit your profile
+            </p>
             <form className="flex max-w-md flex-col gap-4">
               <div>
-                <div className="mb-2 block">
+                <div className="mb-2 font-poppins">
                   <Label htmlFor="name" value="Full Name" />
                 </div>
                 <TextInput
+                  className="font-poppins"
                   id="name"
                   type="text"
                   placeholder="John Doe"
@@ -21,10 +24,11 @@ const UserProfile = () => {
                 />
               </div>
               <div>
-                <div className="mb-2 block">
+                <div className="mb-2 font-poppins">
                   <Label htmlFor="birthday" value="Birthday" />
                 </div>
                 <TextInput
+                  className="font-poppins"
                   id="birthday"
                   type="date"
                   value="1999-06-01"
@@ -32,25 +36,35 @@ const UserProfile = () => {
                 />
               </div>
               <div>
-                <div className="mb-2 block">
+                <div className="mb-2 font-poppins">
                   <Label htmlFor="email" value="Your Email" />
                 </div>
                 <TextInput
+                  className="font-poppins"
                   id="email"
                   type="email"
-                  value="johndoe@gmail.com"
+                  value="dika@gmail.com"
                   disabled
                 />
               </div>
               <div>
-                <div className="mb-2 block">
+                <div className="mb-2 font-poppins">
                   <Label htmlFor="phone" value="Phone Number" />
                 </div>
                 <TextInput
+                  className="font-poppins"
                   id="phone"
                   type="text"
                   addon="+62"
-                  value="123 456 789"
+                  placeholder="123 456 789"
+                  color="warning"
+                  helperText={
+                    <>
+                      <span className="font-medium">Oops!</span> This field must
+                      be filled with numbers only.
+                    </>
+                  }
+                  required
                 />
               </div>
               <button
