@@ -22,8 +22,8 @@ const ProfileDropdown = () => {
             </span>
           </DropdownHeader>
           <DropdownDivider />
-          <DropdownItem href="#profile">Profile</DropdownItem>
-          <DropdownItem href="#profile">Sign Out</DropdownItem>
+          <DropdownItem href="/user-profile">Profile</DropdownItem>
+          <DropdownItem href="/">Keluar</DropdownItem>
         </Dropdown>
         <div className="lg:block md:block hidden font-medium text-end">
           <div>Dika Wicaksono</div>
