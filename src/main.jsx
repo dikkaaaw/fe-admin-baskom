@@ -5,6 +5,8 @@ import store from "./store.jsx";
 import Login from "./pages/Login.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 import Payment from "./pages/Payment.jsx";
+import NotFound from "./pages/NotFound.jsx";
+import User from "./pages/User.jsx";
 import Layout from "./components/Layout.jsx";
 import Private from "./private/private.jsx";
 import "./index.css";
@@ -15,7 +17,6 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { Provider } from "react-redux";
-import NotFound from "./pages/NotFound.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -24,6 +25,7 @@ const router = createBrowserRouter(
       <Route path="" element={<Layout />}>
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="payment" element={<Payment />} />
+        <Route path="user" element={<User />} />
       </Route>
       <Route path="" element={<Private />}></Route>
       <Route path="*" element={<NotFound />}></Route>
