@@ -1,18 +1,6 @@
-import { useState, useEffect } from "react";
 import { Label, TextInput, Card, FileInput } from "flowbite-react";
 
 const UserProfile = () => {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
-
-    return () => {
-      clearTimeout(timer);
-    };
-  }, []);
   return (
     <>
       <h1 className="text-3xl font-bold font-poppins mb-4">Account Settings</h1>
