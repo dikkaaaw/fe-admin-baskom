@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import {
   Avatar,
   Dropdown,
@@ -22,7 +23,9 @@ const ProfileDropdown = () => {
             </span>
           </DropdownHeader>
           <DropdownDivider />
-          <DropdownItem href="/user-profile">Profile</DropdownItem>
+          <Link to="/user-profile">
+            <DropdownItem>Profile</DropdownItem>
+          </Link>
           <DropdownItem href="/">Keluar</DropdownItem>
         </Dropdown>
         <div className="lg:block md:block hidden font-medium text-end">
