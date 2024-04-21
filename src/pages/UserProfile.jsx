@@ -30,16 +30,16 @@ const UserProfile = () => {
         </Box>
       ) : (
         <>
-          <h1 className="text-3xl font-bold font-poppins mb-4">
+          <h1 className="mb-4 text-3xl font-bold font-poppins">
             Account Settings
           </h1>
-          <Card className="py-6 px-2 max-w-6xl">
+          <Card className="max-w-6xl px-2 py-6">
             <div className="container flex flex-row justify-between gap-4">
               <div className="w-1/2">
-                <p className="text-md font-semibold font-poppins">
+                <p className="font-semibold text-md font-poppins">
                   Edit your profile
                 </p>
-                <form className="flex max-w-md flex-col gap-4">
+                <form className="flex flex-col max-w-md gap-4">
                   <div>
                     <div className="mb-2 font-poppins">
                       <Label htmlFor="name" value="Full Name" />
@@ -97,7 +97,7 @@ const UserProfile = () => {
                     />
                   </div>
                   <button
-                    className="font-medium text-sm font-poppins text-white rounded-lg bg-slate-800 p-3"
+                    className="p-3 text-sm font-medium text-white rounded-lg font-poppins bg-slate-800"
                     type="submit"
                   >
                     Save change

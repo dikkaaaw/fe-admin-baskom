@@ -23,23 +23,23 @@ const Login = () => {
       <img
         src={imgLogin}
         alt="image-login"
-        className="lg:flex md:flex hidden items-center justify-center w-2/5 bg-slate-800 h-full opacity-80 object-cover"
+        className="items-center justify-center hidden object-cover w-2/5 h-full lg:flex md:flex bg-slate-800 opacity-80"
       />
       <div className="flex items-center justify-center w-3/5">
         <form>
           <div className="flex flex-col items-center justify-center">
-            <img src={imgLogo} alt="img-logo" className="mb-8 w-20" />
+            <img src={imgLogo} alt="img-logo" className="w-20 mb-8" />
             <h1
               style={{ marginBottom: "70px" }}
-              className="text-2xl font-bold text-purple-700 text-center font-poppins"
+              className="text-2xl font-bold text-center text-purple-700 font-poppins"
             >
               Login to Admin
             </h1>
           </div>
-          <div className="flex mb-4 flex-wrap relative rounded-2xl items-center">
+          <div className="relative flex flex-wrap items-center mb-4 rounded-2xl">
             <div className="relative w-full">
               <span
-                className="absolute inset-y-0 left-3 flex items-center"
+                className="absolute inset-y-0 flex items-center left-3"
                 style={{ marginTop: "0.375rem", opacity: "30%" }}
               >
                 <FaEnvelope style={{ marginBottom: "0.125rem" }} />
@@ -56,10 +56,10 @@ const Login = () => {
             </div>
           </div>
 
-          <div className="flex flex-wrap relative rounded-2xl items-center">
+          <div className="relative flex flex-wrap items-center rounded-2xl">
             <div className="relative w-full">
               <span
-                className="absolute inset-y-0 left-3 flex items-center"
+                className="absolute inset-y-0 flex items-center left-3"
                 style={{ marginTop: "0.375rem" }}
               >
                 <FaLock style={{ marginBottom: "0.125rem", opacity: "30%" }} />
@@ -75,7 +75,7 @@ const Login = () => {
               />
               <span
                 onClick={togglePasswordVisibility}
-                className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer"
+                className="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer"
               >
                 {showPassword ? <FaRegEye /> : <FaEyeSlash />}
               </span>
@@ -83,7 +83,7 @@ const Login = () => {
           </div>
 
           {error && (
-            <p className="text-red-500 text-sm text-center mt-2">{error}</p>
+            <p className="mt-2 text-sm text-center text-red-500">{error}</p>
           )}
           <Link to="/dashboard">
             <button
@@ -93,7 +93,7 @@ const Login = () => {
               Log In
             </button>
           </Link>
-          <div className="flex justify-center mb-4 mt-4">
+          <div className="flex justify-center mt-4 mb-4">
             <p>─────</p>
             <p className="me-2 ms-2 font-poppins">Or</p>
             <p>─────</p>

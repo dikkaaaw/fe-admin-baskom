@@ -38,9 +38,9 @@ const Navbar = () => {
   return (
     <>
       <nav className="flex items-center justify-between border border-black border-opacity-15 py-3 bg-[#f7f7f7] relative">
-        <div className="container mx-auto lg:px-24 px-5 flex items-center justify-between gap-5">
+        <div className="container flex items-center justify-between gap-5 px-5 mx-auto lg:px-24">
           <BiMenu
-            className="w-8 h-8 lg:hidden cursor-pointer"
+            className="w-8 h-8 cursor-pointer lg:hidden"
             onClick={() => setToggle(true)}
           />
           {toggle && (
@@ -48,10 +48,10 @@ const Navbar = () => {
               <motion.div
                 animate={{ x: [-100, 0] }}
                 transition={{ duration: 0.3 }}
-                className="fixed top-0 left-0 right-0 lg:hidden w-1/2 h-screen flex flex-col bg-slate-800"
+                className="fixed top-0 left-0 right-0 flex flex-col w-1/2 h-screen lg:hidden bg-slate-800"
               >
                 <BiX
-                  className="w-8 h-8 lg:hidden relative top-5 left-5 text-slate-200 cursor-pointer"
+                  className="relative w-8 h-8 cursor-pointer lg:hidden top-5 left-5 text-slate-200"
                   onClick={() => setToggle(false)}
                 />
                 <ul className="pt-8 pb-4 space-y-1 text-sm font-semibold text-slate-200">
@@ -116,7 +116,7 @@ const Navbar = () => {
           )}
 
           <p
-            className="text-md font-semibold py-3 font-poppins"
+            className="py-3 font-semibold text-md font-poppins"
             style={{ letterSpacing: "2px" }}
           >
             Dashboard Admin
@@ -124,23 +124,23 @@ const Navbar = () => {
           <ProfileDropdown />
 
           {showCloseModal && (
-            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-              <div className="bg-white p-8 rounded-md w-96">
+            <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+              <div className="p-8 bg-white rounded-md w-96">
                 <div className="flex items-center justify-center mb-2">
-                  <FaExclamationTriangle className="text-red-500 w-8 h-8" />
+                  <FaExclamationTriangle className="w-8 h-8 text-red-500" />
                 </div>
-                <p className="text-md font-medium text-center mb-10">
+                <p className="mb-10 font-medium text-center text-md">
                   Apakah Anda yakin ingin Logout?
                 </p>
                 <div className="flex justify-center gap-4">
                   <button
-                    className="bg-red-500 text-white px-6 py-1 rounded-md transition-all duration-300 hover:bg-opacity-80"
+                    className="px-6 py-1 text-white transition-all duration-300 bg-red-500 rounded-md hover:bg-opacity-80"
                     onClick={logoutHandler}
                   >
                     Keluar
                   </button>
                   <button
-                    className="border border-gray-300 px-6 rounded-md transition-all duration-300 hover:bg-gray-100"
+                    className="px-6 transition-all duration-300 border border-gray-300 rounded-md hover:bg-gray-100"
                     onClick={() => setShowCloseModal(false)}
                   >
                     Batal

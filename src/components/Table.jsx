@@ -2,9 +2,9 @@ const Table = () => {
   return (
     <>
       <div className="overflow-x-auto">
-        <table className="table-auto w-full">
+        <table className="w-full table-auto">
           <thead className="bg-[#EBF3FC] text-left text-sm font-normal font-poppins">
-            <tr className="h-9 text-center">
+            <tr className="text-center h-9">
               <th>ID</th>
               <th>Kategori</th>
               <th>Status</th>
@@ -16,7 +16,7 @@ const Table = () => {
             <tr className="h-14">
               <td className="text-xs font-bold text-[#4E5566]">johndoe123</td>
               <td className="text-xs font-bold text-[#4E5566]">Promosi</td>
-              <td className="text-sm font-bold text-dark-green uppercase">
+              <td className="text-sm font-bold uppercase text-dark-green">
                 SUDAH BAYAR
               </td>
               <td className="text-xs font-bold text-[#202244]">Credit Card</td>

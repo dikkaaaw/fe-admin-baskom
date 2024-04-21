@@ -53,11 +53,11 @@ const User = () => {
         <>
           <Card />
           <div>
-            <div className="py-5 mx-auto lg:flex items-center text-center justify-between">
-              <h2 className="font-bold text-lg mb-4 font-poppins">
+            <div className="items-center justify-between py-5 mx-auto text-center lg:flex">
+              <h2 className="mb-4 text-lg font-bold font-poppins">
                 Status Pembayaran
               </h2>
-              <div className="text-dark-blue flex items-center justify-between gap-8">
+              <div className="flex items-center justify-between gap-8 text-dark-blue">
                 <Box
                   sx={{
                     border: "1px solid #ccc",
@@ -80,12 +80,12 @@ const User = () => {
                   </Box>
                 </Box>
                 <Menu
-                  className="justify-center items-center mt-2"
+                  className="items-center justify-center mt-2"
                   anchorEl={anchorEl}
                   open={Boolean(anchorEl)}
                   onClose={handleClose}
                 >
-                  <div className="flex justify-center items-center ps-2">
+                  <div className="flex items-center justify-center ps-2">
                     <Checkbox />
                     <MenuItem
                       style={{ fontFamily: "poppins", fontWeight: "500" }}
@@ -94,7 +94,7 @@ const User = () => {
                       Sudah Bayar
                     </MenuItem>
                   </div>
-                  <div className="flex justify-center items-center ps-2">
+                  <div className="flex items-center justify-center ps-2">
                     <Checkbox />
                     <MenuItem
                       style={{ fontFamily: "poppins", fontWeight: "500" }}
@@ -111,7 +111,7 @@ const User = () => {
                     justifyContent: "center",
                   }}
                 >
-                  <FaSearch className="mr-4 mb-2" />
+                  <FaSearch className="mb-2 mr-4" />
                   <TextField
                     id="input-with-sx"
                     className="font-poppins"

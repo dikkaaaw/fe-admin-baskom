@@ -18,7 +18,7 @@ const ProfileDropdown = () => {
         >
           <DropdownHeader>
             <span className="block text-sm font-poppins">Dika Wicaksono</span>
-            <span className="block truncate text-sm font-medium font-poppins">
+            <span className="block text-sm font-medium truncate font-poppins">
               dika@gmail.com
             </span>
           </DropdownHeader>
@@ -30,7 +30,7 @@ const ProfileDropdown = () => {
             Keluar
           </DropdownItem>
         </Dropdown>
-        <div className="lg:block md:block hidden font-medium text-end">
+        <div className="hidden font-medium lg:block md:block text-end">
           <div>Dika Wicaksono</div>
           <div className="text-sm text-gray-500">Admin</div>
         </div>
