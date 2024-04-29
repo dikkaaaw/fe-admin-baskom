@@ -1,6 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from "react-router-dom";
+import { Provider } from "react-redux";
 import store from "./store.jsx";
 import Login from "./pages/Login.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
@@ -12,13 +19,6 @@ import UserProfile from "./pages/UserProfile.jsx";
 import Layout from "./components/Layout.jsx";
 import Private from "./private/private.jsx";
 import "./index.css";
-import {
-  createBrowserRouter,
-  createRoutesFromElements,
-  Route,
-  RouterProvider,
-} from "react-router-dom";
-import { Provider } from "react-redux";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
