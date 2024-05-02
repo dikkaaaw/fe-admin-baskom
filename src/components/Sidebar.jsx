@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
-import { removeToken } from "../slices/authSlice";
 import {
   FaExclamationTriangle,
   FaTachometerAlt,
@@ -22,7 +20,6 @@ const Sidebar = ({ children }) => {
     { title: "Keluar", path: "/", icon: FaSignOutAlt },
   ];
 
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [activeMenu, setActiveMenu] = useState("");
   const [showCloseModal, setShowCloseModal] = useState(false);
@@ -44,7 +41,6 @@ const Sidebar = ({ children }) => {
   };
 
   const logoutHandler = () => {
-    dispatch(removeToken());
     navigate("/");
     setActiveMenu("");
   };
