@@ -9,22 +9,12 @@ import {
   FaExclamationTriangle,
 } from "react-icons/fa";
 import { motion } from "framer-motion";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { removeToken } from "../slices/authSlice";
 import ProfileDropdown from "./ProfileDropdown";
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [showCloseModal, setShowCloseModal] = useState(false);
-
-  const logoutHandler = () => {
-    dispatch(removeToken());
-    navigate("/");
-  };
 
   const showModalLogoutHandler = async () => {
     try {
@@ -135,7 +125,7 @@ const Navbar = () => {
                 <div className="flex justify-center gap-4">
                   <button
                     className="px-6 py-1 text-white transition-all duration-300 bg-red-500 rounded-md hover:bg-opacity-80"
-                    onClick={logoutHandler}
+                    // onClick={logoutHandler}
                   >
                     Keluar
                   </button>
