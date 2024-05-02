@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { Label, TextInput, Card, FileInput } from "flowbite-react";
 import Box from "@mui/material/Box";
-import CircularProgress from "@mui/material/CircularProgress";
+import { dotPulse } from "ldrs";
 
 const UserProfile = () => {
   const [isLoading, setIsLoading] = useState(true);
+
+  dotPulse.register();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -26,7 +28,7 @@ const UserProfile = () => {
             height: "100vh",
           }}
         >
-          <CircularProgress />
+          <l-dot-pulse size="50" speed="2.0" color="black"></l-dot-pulse>
         </Box>
       ) : (
         <>
