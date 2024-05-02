@@ -26,7 +26,6 @@ This app is built using ReactJs + Vite and JavaScript. It utilizes the following
 - [ReactJS](https://react.dev/) - A fast, small, and feature-rich JavaScript library.
 - [Vite](https://vitejs.org/) - Vue's new build tool that provides a faster development experience.
 - [Node.js](https://nodejs.org/en/) - A cross platform, back end compatible runtime that executes JavaScript code
-- [Redux Toolkit](https://redux-toolkit.js.org/) - Redux toolkit is the official recommended way to create redux store in react applications.
 - [MaterialUI](https://mui.com/) - A comprehensive set of customizable components for building web applications with Material Design.
 - [FlowbiteReact](https://flowbite-react.com/) - A free open source UI kit to help you create stunning websites or web apps with ease.
 
