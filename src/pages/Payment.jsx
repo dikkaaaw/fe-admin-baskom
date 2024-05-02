@@ -7,11 +7,13 @@ import TextField from "@mui/material/TextField";
 import { IconButton, Menu, MenuItem } from "@mui/material";
 import { FilterList } from "@mui/icons-material";
 import Checkbox from "@mui/material/Checkbox";
-import CircularProgress from "@mui/material/CircularProgress"; // Import the CircularProgress component
+import { dotPulse } from "ldrs";
 
 const Payment = () => {
   const [anchorEl, setAnchorEl] = useState(null);
-  const [isLoading, setIsLoading] = useState(true); // Add a loading state
+  const [isLoading, setIsLoading] = useState(true);
+
+  dotPulse.register();
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -48,7 +50,7 @@ const Payment = () => {
             height: "100vh",
           }}
         >
-          <CircularProgress />
+          <l-dot-pulse size="50" speed="2.0" color="black"></l-dot-pulse>
         </Box>
       ) : (
         <>
