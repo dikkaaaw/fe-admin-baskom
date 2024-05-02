@@ -7,11 +7,13 @@ import TextField from "@mui/material/TextField";
 import { IconButton, Menu, MenuItem } from "@mui/material";
 import { FilterList } from "@mui/icons-material";
 import Checkbox from "@mui/material/Checkbox";
-import CircularProgress from "@mui/material/CircularProgress";
+import { dotPulse } from "ldrs";
 
 const Dashboard = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+
+  dotPulse.register();
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -48,7 +50,7 @@ const Dashboard = () => {
             height: "100vh",
           }}
         >
-          <CircularProgress />
+          <l-dot-pulse size="50" speed="2.0" color="black"></l-dot-pulse>
         </Box>
       ) : (
         <>
