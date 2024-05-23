@@ -1,49 +1,58 @@
-import { useEffect, useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useContext, useEffect } from "react";
+import { ThemeContext } from "./context/ThemeContext";
+import { DARK_THEME, LIGHT_THEME } from "./constants/themeConstants";
+import BaseLayout from "./layout/BaseLayout";
 import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
-import Login from "./pages/Login.jsx";
-import Dashboard from "./pages/Dashboard.jsx";
-import Payment from "./pages/Payment.jsx";
-import NotFound from "./pages/NotFound.jsx";
-import Product from "./pages/Product.jsx";
-import User from "./pages/User.jsx";
-import Layout from "./components/Layout.jsx";
-import UserProfile from "./pages/UserProfile.jsx";
-import "./index.css";
+  Dashboard,
+  PageNotFound,
+  User,
+  Transaction,
+  Product,
+  Login,
+} from "./screens";
+import MoonIcon from "./assets/icons/moon.svg";
+import SunIcon from "./assets/icons/sun.svg";
+import "./App.scss";
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const { theme, toggleTheme } = useContext(ThemeContext);
 
+  // adding dark-mode class if the dark mode is set on to the body tag
   useEffect(() => {
-    const accessToken = localStorage.getItem("accessToken");
-    setIsAuthenticated(!!accessToken);
-  }, []);
+    if (theme === DARK_THEME) {
+      document.body.classList.add("dark-mode");
+    } else {
+      document.body.classList.remove("dark-mode");
+    }
+  }, [theme]);
 
-  const Private = ({ element }) => {
-    return isAuthenticated ? element : <Navigate to="/login" />;
-  };
-
-  const Auth = ({ element }) => {
-    return isAuthenticated ? <Navigate to="/" /> : element;
-  };
   return (
-    <Router>
-      <Routes>
-        <Route path="" element={<Login />} />
-        <Route path="/" element={<Layout />}>
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="payment" element={<Payment />} />
-          <Route path="user" element={<User />} />
-          <Route path="product" element={<Product />} />
-          <Route path="user-profile" element={<UserProfile />} />
-        </Route>
-        <Route path="*" element={<NotFound />}></Route>
-      </Routes>
-    </Router>
+    <>
+      <Router>
+        <Routes>
+          <Route path="" element={<Login />} />
+          <Route element={<BaseLayout />}>
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/users" element={<User />} />
+            <Route path="/transactions" element={<Transaction />} />
+            <Route path="/products" element={<Product />} />
+            <Route path="*" element={<PageNotFound />} />
+          </Route>
+        </Routes>
+
+        <button
+          type="button"
+          className="theme-toggle-btn"
+          onClick={toggleTheme}
+        >
+          <img
+            className="theme-icon"
+            src={theme === LIGHT_THEME ? SunIcon : MoonIcon}
+          />
+        </button>
+      </Router>
+    </>
   );
 }
 
