@@ -10,6 +10,7 @@ import {
   Transaction,
   Product,
   Login,
+  UserSetting,
 } from "./screens";
 import MoonIcon from "./assets/icons/moon.svg";
 import SunIcon from "./assets/icons/sun.svg";
@@ -37,6 +38,7 @@ function App() {
             <Route path="/users" element={<User />} />
             <Route path="/transactions" element={<Transaction />} />
             <Route path="/products" element={<Product />} />
+            <Route path="/user-settings" element={<UserSetting />} />
             <Route path="*" element={<PageNotFound />} />
           </Route>
         </Routes>
