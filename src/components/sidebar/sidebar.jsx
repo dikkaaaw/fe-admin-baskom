@@ -6,7 +6,6 @@ import {
   MdOutlineLogout,
   MdOutlinePeople,
   MdOutlineSettings,
-  MdOutlineShoppingBag,
 } from "react-icons/md";
 import { Link, useLocation } from "react-router-dom";
 import "./Sidebar.scss";
@@ -49,7 +48,9 @@ const Sidebar = () => {
       <div className="sidebar-top">
         <div className="sidebar-brand">
           {/* <img src={theme === LIGHT_THEME ? LogoBlue : LogoWhite} alt="" /> */}
-          <span className="sidebar-brand-text">BasKom.</span>
+          <Link to="/dashboard">
+            <span className="sidebar-brand-text">BasKom.</span>
+          </Link>
         </div>
         <button className="sidebar-close-btn" onClick={closeSidebar}>
           <MdOutlineClose size={24} />
@@ -86,16 +87,6 @@ const Sidebar = () => {
                   <MdOutlineCurrencyExchange size={18} />
                 </span>
                 <span className="menu-link-text">Kelola Transaksi</span>
-              </Link>
-            </li>
-            <li
-              className={`menu-link ${activeItem === "/products" ? "active" : ""}`}
-            >
-              <Link to="/products" className="menu-link">
-                <span className="menu-link-icon">
-                  <MdOutlineShoppingBag size={20} />
-                </span>
-                <span className="menu-link-text">Kelola Produk</span>
               </Link>
             </li>
           </ul>

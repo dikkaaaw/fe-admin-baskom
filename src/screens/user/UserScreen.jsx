@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { AreaCards, AreaTable, AreaTop } from "../../components";
+import { AreaCards, AreaTable, AreaTop, SearchBar } from "../../components";
 import "../loading.scss";
 
 const User = () => {
@@ -25,6 +25,7 @@ const User = () => {
     <div className="content-area">
       <AreaTop />
       <AreaCards />
+      <SearchBar />
       <AreaTable />
     </div>
   );
