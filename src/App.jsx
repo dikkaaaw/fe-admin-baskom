@@ -8,7 +8,6 @@ import {
   PageNotFound,
   User,
   Transaction,
-  Product,
   Login,
   UserSetting,
 } from "./screens";
@@ -37,7 +36,6 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/users" element={<User />} />
             <Route path="/transactions" element={<Transaction />} />
-            <Route path="/products" element={<Product />} />
             <Route path="/user-settings" element={<UserSetting />} />
             <Route path="*" element={<PageNotFound />} />
           </Route>
