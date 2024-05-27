@@ -1,13 +1,14 @@
-import { MdOutlineMenu } from "react-icons/md";
-import "./AreaTop.scss";
 import { useContext, useEffect, useRef, useState } from "react";
+import { MdOutlineMenu } from "react-icons/md";
 import { SidebarContext } from "../../../context/SidebarContext";
-import "react-date-range/dist/styles.css"; // main style file
-import "react-date-range/dist/theme/default.css"; // theme css file
+import PropTypes from "prop-types";
 import { addDays } from "date-fns";
 import { DateRange } from "react-date-range";
+import "react-date-range/dist/styles.css"; // main style file
+import "react-date-range/dist/theme/default.css"; // theme css file
+import "./AreaTop.scss";
 
-const AreaTop = () => {
+const AreaTop = ({ title }) => {
   const { openSidebar } = useContext(SidebarContext);
 
   const [state, setState] = useState([
@@ -48,7 +49,7 @@ const AreaTop = () => {
         >
           <MdOutlineMenu size={24} />
         </button>
-        <h2 className="area-top-title">Dashboard</h2>
+        <h2 className="area-top-title">{title}</h2>
       </div>
       <div className="area-top-r">
         <div
@@ -69,6 +70,10 @@ const AreaTop = () => {
       </div>
     </section>
   );
+};
+
+AreaTop.propTypes = {
+  title: PropTypes.string.isRequired,
 };
 
 export default AreaTop;
