@@ -8,8 +8,8 @@ import {
   MdOutlineSettings,
 } from "react-icons/md";
 import { Link, useLocation } from "react-router-dom";
-import "./Sidebar.scss";
 import { SidebarContext } from "../../context/SidebarContext";
+import "./Sidebar.scss";
 
 const Sidebar = () => {
   //   const { theme } = useContext(ThemeContext);
@@ -94,7 +94,9 @@ const Sidebar = () => {
 
         <div className="sidebar-menu sidebar-menu2">
           <ul className="menu-list">
-            <li className="menu-item">
+            <li
+              className={`menu-link ${activeItem === "/user-settings" ? "active" : ""}`}
+            >
               <Link to="/user-settings" className="menu-link">
                 <span className="menu-link-icon">
                   <MdOutlineSettings size={20} />
