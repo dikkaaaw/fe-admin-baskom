@@ -23,7 +23,7 @@ const Dashboard = () => {
 
   return (
     <div className="content-area">
-      <AreaTop />
+      <AreaTop title="Dashboard" />
       <AreaCards />
       <SearchBar />
       <AreaTable />

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "./UserSetting.scss";
+import { UserSettings } from "../../components";
 
 const UserSetting = () => {
   const [loading, setLoading] = useState(true);
@@ -21,11 +21,9 @@ const UserSetting = () => {
   }
 
   return (
-    <>
-      <div>
-        <p>Ini user Setting</p>
-      </div>
-    </>
+    <div className="content-area">
+      <UserSettings />
+    </div>
   );
 };
 

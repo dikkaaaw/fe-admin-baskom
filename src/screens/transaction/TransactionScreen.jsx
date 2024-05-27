@@ -23,10 +23,10 @@ const Transaction = () => {
 
   return (
     <div className="content-area">
-      <AreaTop />
+      <AreaTop title="Kelola Transaksi" />
       <AreaCards />
       <SearchBar />
-      <AreaTable />
+      <AreaTable title="Data Transaksi" />
     </div>
   );
 };

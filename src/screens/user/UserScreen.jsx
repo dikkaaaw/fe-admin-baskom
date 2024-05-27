@@ -23,10 +23,10 @@ const User = () => {
 
   return (
     <div className="content-area">
-      <AreaTop />
+      <AreaTop title="Kelola User" />
       <AreaCards />
       <SearchBar />
-      <AreaTable />
+      <AreaTable title="Data User" />
     </div>
   );
 };
