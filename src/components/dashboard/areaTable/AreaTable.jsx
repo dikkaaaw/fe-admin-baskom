@@ -1,4 +1,5 @@
 import AreaTableAction from "./AreaTableAction";
+import PropTypes from "prop-types";
 import "./AreaTable.scss";
 
 const TABLE_HEADS = ["User ID", "Email", "Name", "Roles", "Status", "Action"];
@@ -38,12 +39,12 @@ const TABLE_DATA = [
   },
 ];
 
-const AreaTable = () => {
+const AreaTable = ({ title }) => {
   return (
     <section className="content-area-table">
-      {/* <div className="data-table-info">
-        <h4 className="data-table-title">Latest Users</h4>
-      </div> */}
+      <div className="data-table-info">
+        <h4 className="data-table-title">{title}</h4>
+      </div>
       <div className="data-table-diagram">
         <table>
           <thead>
@@ -80,6 +81,10 @@ const AreaTable = () => {
       </div>
     </section>
   );
+};
+
+AreaTable.propTypes = {
+  title: PropTypes.string.isRequired,
 };
 
 export default AreaTable;
