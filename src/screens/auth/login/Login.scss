@@ -132,7 +132,7 @@
   .divider {
     display: flex;
     justify-content: center;
-    margin: 1rem 0;
+    margin: 26px 0;
   
     &.divider-text::before,
     &.divider-text::after {
@@ -140,11 +140,11 @@
       flex-grow: 1;
       border-top: 1px solid #a0aec0;
     }
-  
+    
     &.divider-text::before {
       margin-right: 0.5rem;
     }
-  
+    
     &.divider-text::after {
       margin-left: 0.5rem;
     }
