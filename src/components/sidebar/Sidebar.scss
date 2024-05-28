@@ -118,6 +118,7 @@
       border-radius: 12px;
       color: var(--text-color-inverted);
       transition: var(--default-transition);
+      cursor: pointer;
   
       @media(max-width: 1200px){
           padding: 2px;
