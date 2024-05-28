@@ -54,17 +54,13 @@
       border-bottom: 1px solid var(--border-color-inverted);
     }
   
-    .sidebar-brand{
-      display: flex;
-      align-items: center;
-      column-gap: 6px;
-    }
   
     .sidebar-brand-text{
       text-transform: uppercase;
       font-weight: 900;
       color: var(--logo-color);
       margin-bottom: 8px;
+      margin-left: 20px;
   
       @media(max-width: 1200px){
           display: none;
