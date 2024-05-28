@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { UserSettings } from "../../components";
+import { UserSettingsForm } from "../../components";
 
 const UserSetting = () => {
   const [loading, setLoading] = useState(true);
@@ -22,7 +23,8 @@ const UserSetting = () => {
 
   return (
     <div className="content-area">
-      <UserSettings />
+      <UserSettings title="Edit Your Profile" />
+      <UserSettingsForm />
     </div>
   );
 };
