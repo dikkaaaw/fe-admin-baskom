@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { AreaCards, AreaTable, AreaTop, SearchBar } from "../../components";
+import { AreaCards, AreaTable, AreaTop } from "../../components";
+import { FaFilter } from "react-icons/fa";
 import "../loading.scss";
 
 const Dashboard = () => {
@@ -25,8 +26,16 @@ const Dashboard = () => {
     <div className="content-area">
       <AreaTop title="Dashboard" />
       <AreaCards />
-      <SearchBar />
-      <AreaTable />
+      <form className="search-bar">
+        <div className="filter-box">
+          <FaFilter className="filter-icon" />
+        </div>
+        <input type="text" placeholder="Search..." className="search-input" />
+        <button type="submit" className="search-button">
+          Search
+        </button>
+      </form>
+      <AreaTable title="Daftar User" />
     </div>
   );
 };
