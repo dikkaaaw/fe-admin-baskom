@@ -5,7 +5,6 @@ import {
   MdOutlineGridView,
   MdOutlineLogout,
   MdOutlinePeople,
-  MdOutlineSettings,
 } from "react-icons/md";
 import { Link, useLocation } from "react-router-dom";
 import { SidebarContext } from "../../context/SidebarContext";
@@ -17,7 +16,7 @@ const Sidebar = () => {
   const navbarRef = useRef(null);
   const location = useLocation();
   const [activeItem, setActiveItem] = useState(location.pathname);
-  const [showLogoutModal, setShowLogoutModal] = useState(false); // State to control modal visibility
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
 
   useEffect(() => {
     setActiveItem(location.pathname);
@@ -109,7 +108,7 @@ const Sidebar = () => {
 
           <div className="sidebar-menu sidebar-menu2">
             <ul className="menu-list">
-              <li
+              {/* <li
                 className={`menu-link ${
                   activeItem === "/user-settings" ? "active" : ""
                 }`}
@@ -120,7 +119,7 @@ const Sidebar = () => {
                   </span>
                   <span className="menu-link-text">Settings</span>
                 </Link>
-              </li>
+              </li> */}
               <li className={`menu-link ${activeItem === "/" ? "active" : ""}`}>
                 <a className="menu-link" onClick={handleLogoutClick}>
                   <span className="menu-link-icon">
