@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import "./userProfileModal.scss";
+import styles from "./userProfileModal.module.scss";
 
 const UserProfileModal = ({ isOpen, onClose }) => {
   const [user, setUser] = useState({});
@@ -23,43 +23,33 @@ const UserProfileModal = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
-        <button className="modal-close-btn" onClick={onClose}>
+    <div className={styles.modalOverlay}>
+      <div className={styles.modalContent}>
+        <button className={styles.modalCloseBtn} onClick={onClose}>
           &times;
         </button>
-        <h3>Edit Profile</h3>
-        <div className="avatar-section-2">
-          <img src={avatarUrl} alt="avatar" className="user-avatar" />
+        <h3>Profile</h3>
+        <div className={styles.avatarSection}>
+          <img src={avatarUrl} alt="avatar" className={styles.avatar} />
         </div>
         <form>
-          <div className="form-group">
+          <div className={styles.formGroup}>
             <label htmlFor="name">Name</label>
             <input type="text" id="name" name="name" value={user.name || ""} />
           </div>
-          <div className="form-group">
+          <div className={styles.formGroup}>
             <label htmlFor="email">Email</label>
             <input
               type="email"
               id="email"
               name="email"
               value={user.email || ""}
-              disabled
             />
           </div>
-          <div className="form-group">
-            <label htmlFor="address">Address</label>
-            <textarea
-              type="text"
-              id="address"
-              name="address"
-              value={user.address || ""}
-            />
-          </div>
-          <div className="form-group">
+          <div className={styles.formGroup}>
             <label htmlFor="phone-number">Phone Number</label>
-            <div className="input-group">
-              <span className="country-code">+62</span>
+            <div className={styles.inputGroup}>
+              <span className={styles.countryCode}>+62</span>
               <input
                 type="text"
                 id="phone-number"
@@ -68,8 +58,11 @@ const UserProfileModal = ({ isOpen, onClose }) => {
               />
             </div>
           </div>
-
-          <button type="submit" className="save-btn">
+          <div className={styles.formGroup}>
+            <label htmlFor="address">Address</label>
+            <textarea id="address" name="address" value={user.address || ""} />
+          </div>
+          <button type="submit" className={styles.saveBtn}>
             Save Changes
           </button>
         </form>
