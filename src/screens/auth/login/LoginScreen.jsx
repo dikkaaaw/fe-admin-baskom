@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import axios from "axios";
 import {
   FaRegEye,
   FaEyeSlash,
@@ -7,23 +8,57 @@ import {
   FaLock,
   FaGoogle,
 } from "react-icons/fa";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import imgLogin from "../../../assets/images/img-login.jpg";
 import imgLogo from "../../../assets/images/img-logo-2.png";
 import "./Login.scss";
 
 const Login = () => {
-  const [error] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post("/api/login", { email, password });
+      localStorage.setItem("token", response.data.token);
+      toast.success("Login successful!", {
+        closeOnClick: true,
+        hideProgressBar: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+      });
+      setTimeout(() => {
+        navigate("/dashboard");
+      }, 2000);
+    } catch (error) {
+      setError(error.response.data.message);
+      toast.error("Login failed. Please try again.", {
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  };
+
   return (
     <div className="container">
+      <ToastContainer />
       <img src={imgLogin} alt="image-login" className="image-login" />
       <div className="form-container">
-        <form>
+        <form onSubmit={handleLogin}>
           <div className="form">
             <img src={imgLogo} alt="img-logo" className="img-logo" />
             <h1 className="text-title">Login to Admin</h1>
@@ -36,15 +71,14 @@ const Login = () => {
               <input
                 type="text"
                 id="email"
-                // value={email}
-                // onChange={(e) => setEmail(e.target.value)}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="input"
                 placeholder="Email"
                 required
               />
             </div>
           </div>
-
           <div className="input-container">
             <div className="input-group">
               <span className="input-icon">
@@ -53,8 +87,8 @@ const Login = () => {
               <input
                 type={showPassword ? "text" : "password"}
                 id="search"
-                // value={password}
-                // onChange={(e) => setPassword(e.target.value)}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 className="input"
                 placeholder="Password"
                 required
@@ -67,13 +101,10 @@ const Login = () => {
               </span>
             </div>
           </div>
-
           {error && <p className="error">{error}</p>}
-          <Link to="/dashboard">
-            <button className="submit-button" type="submit">
-              Log In
-            </button>
-          </Link>
+          <button className="submit-button" type="submit">
+            Log In
+          </button>
           <div className="divider">
             <p>─────</p>
             <p className="divider-text">Or</p>
