@@ -13,6 +13,20 @@
       color: var(--xl-text-color);
       margin-bottom: 12px;
     }
+
+    .data-table-info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+
+      .create-btn {
+        font-weight: 600;
+        background-color: var(--primary-color);
+        padding: 2px 16px;
+        border-radius: 4px;
+        color: white;
+      }
+    }
   
     .data-table-diagram {
       border-radius: 6px;
