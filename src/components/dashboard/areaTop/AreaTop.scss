@@ -26,6 +26,27 @@
         display: inline-flex;
       }
     }
+
+    .avatar-section {
+      display: flex;
+      align-items: center;
+      margin-right: 40px;
+
+      .avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 30%;
+        margin-right: 4px;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      .arrow-down {
+        cursor: pointer;
+        color: var(--text-color-inverted);
+      }
+    }
+
   
     // react-date-range plugin theme customization
     .date-range-wrapper {
