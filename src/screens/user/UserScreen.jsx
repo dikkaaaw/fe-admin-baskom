@@ -26,7 +26,7 @@ const User = () => {
       <AreaTop title="Kelola User" />
       <AreaCards />
       <SearchBar />
-      <AreaTable title="Data User" />
+      <AreaTable title="Kelola User" />
     </div>
   );
 };
