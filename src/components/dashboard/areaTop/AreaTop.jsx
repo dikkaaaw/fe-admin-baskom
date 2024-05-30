@@ -1,43 +1,18 @@
-import { useContext, useEffect, useRef, useState } from "react";
-import { MdOutlineMenu } from "react-icons/md";
+import { useContext, useState } from "react";
+import { MdArrowDropDown, MdOutlineMenu } from "react-icons/md";
 import { SidebarContext } from "../../../context/SidebarContext";
+import UserProfileModal from "../userProfileModal/UserProfileModal";
 import PropTypes from "prop-types";
-import { addDays } from "date-fns";
-import { DateRange } from "react-date-range";
-import "react-date-range/dist/styles.css"; // main style file
-import "react-date-range/dist/theme/default.css"; // theme css file
+const avatarUrl =
+  "https://ui-avatars.com/api/?background=random&size=512&name=John Doe";
 import "./AreaTop.scss";
 
 const AreaTop = ({ title }) => {
   const { openSidebar } = useContext(SidebarContext);
+  const [isModalOpen, setModalOpen] = useState(false);
 
-  const [state, setState] = useState([
-    {
-      startDate: new Date(),
-      endDate: addDays(new Date(), 7),
-      key: "selection",
-    },
-  ]);
-
-  const [showDatePicker, setShowDatePicker] = useState(false);
-  const dateRangeRef = useRef(null);
-
-  const handleInputClick = () => {
-    setShowDatePicker(true);
-  };
-
-  const handleClickOutside = (event) => {
-    if (dateRangeRef.current && !dateRangeRef.current.contains(event.target)) {
-      setShowDatePicker(false);
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+  const openModal = () => setModalOpen(true);
+  const closeModal = () => setModalOpen(false);
 
   return (
     <section className="content-area-top">
@@ -52,22 +27,12 @@ const AreaTop = ({ title }) => {
         <h2 className="area-top-title">{title}</h2>
       </div>
       <div className="area-top-r">
-        <div
-          ref={dateRangeRef}
-          className={`date-range-wrapper ${
-            !showDatePicker ? "hide-date-range" : ""
-          }`}
-          onClick={handleInputClick}
-        >
-          <DateRange
-            editableDateInputs={true}
-            onChange={(item) => setState([item.selection])}
-            moveRangeOnFirstSelection={false}
-            ranges={state}
-            showMonthAndYearPickers={false}
-          />
+        <div className="avatar-section" onClick={openModal}>
+          <img src={avatarUrl} alt="Avatar" className="avatar" />
+          <MdArrowDropDown size={24} className="arrow-down" />
         </div>
       </div>
+      <UserProfileModal isOpen={isModalOpen} onClose={closeModal} />
     </section>
   );
 };
