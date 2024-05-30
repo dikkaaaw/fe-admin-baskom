@@ -1,45 +1,33 @@
+import { useState, useEffect } from "react";
+import axios from "axios";
 import AreaTableAction from "./AreaTableAction";
 import PropTypes from "prop-types";
 import "./AreaTable.scss";
 
-const TABLE_HEADS = ["User ID", "Email", "Name", "Roles", "Status", "Action"];
-
-const TABLE_DATA = [
-  {
-    id: 100,
-    userId: "80965",
-    email: "dika@mail.com",
-    name: "Dika W",
-    roles: "User",
-    status: "active",
-  },
-  {
-    id: 101,
-    userId: "80965",
-    email: "dika@mail.com",
-    name: "Dika W",
-    roles: "User",
-    status: "active",
-  },
-  {
-    id: 102,
-    userId: "80965",
-    email: "dika@mail.com",
-    name: "Dika W",
-    roles: "User",
-    status: "active",
-  },
-  {
-    id: 103,
-    userId: "80965",
-    email: "dika@mail.com",
-    name: "Dika W",
-    roles: "User",
-    status: "nonactive",
-  },
-];
+const TABLE_HEADS = ["User ID", "Email", "Name", "Roles", "Action"];
 
 const AreaTable = ({ title }) => {
+  const [tableData, setTableData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const token = localStorage.getItem("token");
+      try {
+        const response = await axios.get("/api/users", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setTableData(response.data);
+        console.log(response);
+      } catch (error) {
+        console.error("Error fetching table data: ", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <section className="content-area-table">
       <div className="data-table-info">
@@ -55,21 +43,13 @@ const AreaTable = ({ title }) => {
             </tr>
           </thead>
           <tbody>
-            {TABLE_DATA?.map((dataItem) => {
+            {tableData?.map((dataItem) => {
               return (
                 <tr key={dataItem.id}>
-                  <td>{dataItem.userId}</td>
+                  <td>{dataItem.id}</td>
                   <td>{dataItem.email}</td>
                   <td>{dataItem.name}</td>
-                  <td>{dataItem.roles}</td>
-                  <td>
-                    <div className="dt-status">
-                      <span
-                        className={`dt-status-dot dot-${dataItem.status}`}
-                      ></span>
-                      <span className="dt-status-text">{dataItem.status}</span>
-                    </div>
-                  </td>
+                  <td>{dataItem.roles[0].name}</td>
                   <td className="dt-cell-action">
                     <AreaTableAction />
                   </td>
