@@ -16,7 +16,6 @@ const AreaCards = () => {
           },
         });
         setActiveUserCount(response.data.length);
-        console.log(response.data.length);
       } catch (error) {
         console.error("Error fetching user data: ", error);
       }
