@@ -1,13 +1,20 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import AreaTableAction from "./AreaTableAction";
+import AddUserModal from "../addUserModal/AddUserModal";
 import PropTypes from "prop-types";
 import "./AreaTable.scss";
 
 const TABLE_HEADS_DEFAULT = ["User ID", "Email", "Name", "Roles", "Action"];
 
-const AreaTable = ({ title, showAction, showActionColumn }) => {
+const AreaTable = ({ title, buttonTitle, showAction, showActionColumn }) => {
   const [tableData, setTableData] = useState([]);
+  const [isModalCreateOpen, setModalCreateOpen] = useState(false);
+
+  const openModalCreate = () => {
+    setModalCreateOpen(true);
+  };
+  const closeModalCreate = () => setModalCreateOpen(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,6 +42,11 @@ const AreaTable = ({ title, showAction, showActionColumn }) => {
     <section className="content-area-table">
       <div className="data-table-info">
         <h4 className="data-table-title">{title}</h4>
+        {showAction && (
+          <button className="create-btn" onClick={() => openModalCreate()}>
+            {buttonTitle}
+          </button>
+        )}
       </div>
       <div className="data-table-diagram">
         <table>
@@ -64,12 +76,14 @@ const AreaTable = ({ title, showAction, showActionColumn }) => {
           </tbody>
         </table>
       </div>
+      <AddUserModal isOpen={isModalCreateOpen} onClose={closeModalCreate} />
     </section>
   );
 };
 
 AreaTable.propTypes = {
   title: PropTypes.string.isRequired,
+  buttonTitle: PropTypes.string.isRequired,
   showAction: PropTypes.bool,
   showActionColumn: PropTypes.bool,
 };
