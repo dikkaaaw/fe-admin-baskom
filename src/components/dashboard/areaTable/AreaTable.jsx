@@ -4,9 +4,9 @@ import AreaTableAction from "./AreaTableAction";
 import PropTypes from "prop-types";
 import "./AreaTable.scss";
 
-const TABLE_HEADS = ["User ID", "Email", "Name", "Roles", "Action"];
+const TABLE_HEADS_DEFAULT = ["User ID", "Email", "Name", "Roles", "Action"];
 
-const AreaTable = ({ title }) => {
+const AreaTable = ({ title, showAction, showActionColumn }) => {
   const [tableData, setTableData] = useState([]);
 
   useEffect(() => {
@@ -19,7 +19,6 @@ const AreaTable = ({ title }) => {
           },
         });
         setTableData(response.data);
-        console.log(response);
       } catch (error) {
         console.error("Error fetching table data: ", error);
       }
@@ -27,6 +26,10 @@ const AreaTable = ({ title }) => {
 
     fetchData();
   }, []);
+
+  const tableHeads = showActionColumn
+    ? [...TABLE_HEADS_DEFAULT]
+    : TABLE_HEADS_DEFAULT.filter((head) => head !== "Action");
 
   return (
     <section className="content-area-table">
@@ -37,7 +40,7 @@ const AreaTable = ({ title }) => {
         <table>
           <thead>
             <tr>
-              {TABLE_HEADS?.map((th, index) => (
+              {tableHeads?.map((th, index) => (
                 <th key={index}>{th}</th>
               ))}
             </tr>
@@ -50,9 +53,11 @@ const AreaTable = ({ title }) => {
                   <td>{dataItem.email}</td>
                   <td>{dataItem.name}</td>
                   <td>{dataItem.roles[0].name}</td>
-                  <td className="dt-cell-action">
-                    <AreaTableAction />
-                  </td>
+                  {showAction && showActionColumn && (
+                    <td className="dt-cell-action">
+                      <AreaTableAction userId={dataItem.id} />
+                    </td>
+                  )}
                 </tr>
               );
             })}
@@ -65,6 +70,13 @@ const AreaTable = ({ title }) => {
 
 AreaTable.propTypes = {
   title: PropTypes.string.isRequired,
+  showAction: PropTypes.bool,
+  showActionColumn: PropTypes.bool,
+};
+
+AreaTable.defaultProps = {
+  showAction: true,
+  showActionColumn: true,
 };
 
 export default AreaTable;
