@@ -1,7 +1,29 @@
+import { useState, useEffect } from "react";
+import axios from "axios";
 import AreaCard from "./AreaCard";
 import "./AreaCards.scss";
 
 const AreaCards = () => {
+  const [activeUserCount, setActiveUserCount] = useState(0);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const token = localStorage.getItem("token");
+      try {
+        const response = await axios.get("/api/users", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setActiveUserCount(response.data.length);
+        console.log(response.data.length);
+      } catch (error) {
+        console.error("Error fetching user data: ", error);
+      }
+    };
+
+    fetchData();
+  }, []);
   return (
     <section className="content-area-cards">
       <AreaCard
@@ -9,8 +31,8 @@ const AreaCards = () => {
         percentFillValue={40}
         cardInfo={{
           title: "Active User",
-          value: "400",
-          text: "We have 400 active users.",
+          value: activeUserCount,
+          text: `We have ${activeUserCount} active users.`,
         }}
       />
       <AreaCard
