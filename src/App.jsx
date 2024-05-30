@@ -3,14 +3,7 @@ import { useContext, useEffect } from "react";
 import { ThemeContext } from "./context/ThemeContext";
 import { DARK_THEME, LIGHT_THEME } from "./constants/themeConstants";
 import BaseLayout from "./layout/BaseLayout";
-import {
-  Dashboard,
-  PageNotFound,
-  User,
-  Transaction,
-  Login,
-  UserSetting,
-} from "./screens";
+import { Dashboard, PageNotFound, User, Transaction, Login } from "./screens";
 import MoonIcon from "./assets/icons/moon.svg";
 import SunIcon from "./assets/icons/sun.svg";
 import "./App.scss";
@@ -35,7 +28,6 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/users" element={<User />} />
             <Route path="/transactions" element={<Transaction />} />
-            <Route path="/user-settings" element={<UserSetting />} />
             <Route path="*" element={<PageNotFound />} />
           </Route>
         </Routes>
