@@ -77,7 +77,12 @@ const EditUserModal = ({ isOpen, onClose, userId }) => {
       });
     } catch (error) {
       console.error("Error updating user data: ", error);
-      toast.error("Failed to save changes.");
+      toast.error("Failed to save changes.", {
+        autoClose: 1500,
+        closeOnClick: true,
+        hideProgressBar: true,
+        pauseOnHover: false,
+      });
     }
   };
 
