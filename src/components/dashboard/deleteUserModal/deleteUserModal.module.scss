@@ -1,0 +1,48 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100000;
+}
+
+h4 {
+  color: #292929;
+  margin-top: 14px;
+  margin-bottom: 40px;
+}
+
+.modalContent {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  position: relative;
+  width: 400px;
+  max-width: 100%;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.buttonSection {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.cancelBtn {
+  background-color: #ccc;
+  padding: 8px 16px;
+  border-radius: 3px;
+}
+
+.deleteBtn {
+  background-color: #ff5555;
+  padding: 8px 16px;
+  border-radius: 3px;
+  color: white;
+}
