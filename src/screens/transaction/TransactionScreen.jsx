@@ -26,7 +26,11 @@ const Transaction = () => {
       <AreaTop title="Kelola Transaksi" />
       <AreaCards />
       <SearchBar />
-      <AreaTable title="Data Transaksi" />
+      <AreaTable
+        title="Data Transaksi"
+        showAction={false}
+        showActionColumn={false}
+      />
     </div>
   );
 };
