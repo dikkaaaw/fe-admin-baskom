@@ -35,7 +35,11 @@ const Dashboard = () => {
           Search
         </button>
       </form>
-      <AreaTable title="Daftar User" />
+      <AreaTable
+        title="Daftar User"
+        showAction={false}
+        showActionColumn={false}
+      />
     </div>
   );
 };
