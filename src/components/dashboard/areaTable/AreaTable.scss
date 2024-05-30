@@ -43,6 +43,7 @@
         td,
         th {
           padding: 14px 12px;
+          text-align: center;
           @media (max-width: 768px) {
             font-size: 15px;
             padding: 12px 10px;
@@ -50,7 +51,7 @@
         }
   
         thead {
-          text-align: left;
+          text-align: center;
           font-size: 17px;
           background-color: var(--thead-bg-color);
   
