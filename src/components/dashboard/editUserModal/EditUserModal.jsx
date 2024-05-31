@@ -9,9 +9,7 @@ const EditUserModal = ({ isOpen, onClose, userId }) => {
   const [errors, setErrors] = useState({});
   const [updatedUser, setUpdatedUser] = useState({
     name: "",
-    email: "",
     phone_number: "",
-    roles: "",
     address: "",
   });
 
@@ -25,7 +23,6 @@ const EditUserModal = ({ isOpen, onClose, userId }) => {
           },
         });
         setUpdatedUser(response.data);
-        console.log(response);
       } catch (error) {
         console.error("Error fetching user data: ", error);
       }
@@ -42,6 +39,22 @@ const EditUserModal = ({ isOpen, onClose, userId }) => {
       ...prevUser,
       [name]: value,
     }));
+
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [name]: "",
+    }));
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+    if (!updatedUser.name) newErrors.name = "Name cannot be empty!";
+    if (!validatePhoneNumber(updatedUser.phone_number)) {
+      newErrors.phone_number = "Phone number must be numeric.";
+    }
+    if (!updatedUser.address) newErrors.address = "Address cannot be empty";
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const validatePhoneNumber = (phoneNumber) => {
@@ -53,15 +66,10 @@ const EditUserModal = ({ isOpen, onClose, userId }) => {
     e.preventDefault();
     const token = localStorage.getItem("token");
 
-    const newErrors = {};
-    if (!validatePhoneNumber(updatedUser.phone_number)) {
-      newErrors.phone_number = "Phone number must be numeric.";
-    }
-
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
+    if (!validateForm()) {
       return;
     }
+
     try {
       await axios.put(`/api/users/${userId}`, updatedUser, {
         headers: {
@@ -111,6 +119,7 @@ const EditUserModal = ({ isOpen, onClose, userId }) => {
               value={updatedUser.name}
               onChange={handleInputChange}
             />
+            {errors.name && <p className={styles.errorText}>{errors.name}</p>}
           </div>
           <div className={styles.formGroup}>
             <label htmlFor="email">Email</label>
@@ -119,7 +128,7 @@ const EditUserModal = ({ isOpen, onClose, userId }) => {
               id="email"
               name="email"
               value={updatedUser.email}
-              onChange={handleInputChange}
+              disabled
             />
           </div>
           <div className={styles.formGroup}>
@@ -146,6 +155,9 @@ const EditUserModal = ({ isOpen, onClose, userId }) => {
               value={updatedUser.address}
               onChange={handleInputChange}
             />
+            {errors.address && (
+              <p className={styles.errorText}>{errors.address}</p>
+            )}
           </div>
           <button type="submit" className={styles.saveBtn}>
             Save Changes
