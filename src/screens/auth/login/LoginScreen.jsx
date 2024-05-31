@@ -30,6 +30,7 @@ const Login = () => {
     try {
       const response = await axios.post("/api/login", { email, password });
       localStorage.setItem("token", response.data.token);
+      setError("");
       toast.success("Login successful!", {
         closeOnClick: true,
         hideProgressBar: true,
@@ -53,6 +54,13 @@ const Login = () => {
     }
   };
 
+  const handleInputChange = (setter) => (e) => {
+    setter(e.target.value);
+    if (error) {
+      setError("");
+    }
+  };
+
   return (
     <div className="container">
       <ToastContainer />
@@ -72,7 +80,7 @@ const Login = () => {
                 type="text"
                 id="email"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={handleInputChange(setEmail)}
                 className="input"
                 placeholder="Email"
                 required
@@ -86,9 +94,9 @@ const Login = () => {
               </span>
               <input
                 type={showPassword ? "text" : "password"}
-                id="search"
+                id="password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={handleInputChange(setPassword)}
                 className="input"
                 placeholder="Password"
                 required
@@ -111,7 +119,7 @@ const Login = () => {
             <p>─────</p>
           </div>
           <Link to="/dashboard">
-            <button className="google-button" type="submit">
+            <button className="google-button" type="button">
               <FaGoogle className="google-icon" /> Sign in with Google
             </button>
           </Link>
