@@ -2,10 +2,13 @@ import { useState } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
 import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import styles from "./addUserModal.module.scss";
+import { FaRegEye, FaEyeSlash } from "react-icons/fa";
+import "react-toastify/dist/ReactToastify.css";
 
 const AddUserModal = ({ isOpen, onClose }) => {
+  const [showPassword, setShowPassword] = useState(false);
+  const [errors, setErrors] = useState({});
   const [user, setUser] = useState({
     name: "",
     email: "",
@@ -16,8 +19,24 @@ const AddUserModal = ({ isOpen, onClose }) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const validateForm = () => {
+    let formErrors = {};
+    if (!user.name) formErrors.name = "Name is required!";
+    if (!user.email) formErrors.email = "Email is required!";
+    if (!user.password) formErrors.password = "Password is required!";
+    setErrors(formErrors);
+    return Object.keys(formErrors).length === 0;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!validateForm()) {
+      return;
+    }
     const token = localStorage.getItem("token");
     try {
       await axios.post("/api/users", user, {
@@ -31,7 +50,7 @@ const AddUserModal = ({ isOpen, onClose }) => {
         hideProgressBar: true,
         pauseOnHover: false,
         onClose: () => {
-          onClose(); // Menutup modal setelah pesan sukses hilang
+          onClose();
           window.location.reload();
         },
       });
@@ -70,6 +89,7 @@ const AddUserModal = ({ isOpen, onClose }) => {
                   value={user.name}
                   onChange={handleChange}
                 />
+                {errors.name && <p className={styles.error}>{errors.name}</p>}
               </div>
               <div className={styles.formGroup}>
                 <label htmlFor="email">Email</label>
@@ -80,16 +100,28 @@ const AddUserModal = ({ isOpen, onClose }) => {
                   value={user.email}
                   onChange={handleChange}
                 />
+                {errors.email && <p className={styles.error}>{errors.email}</p>}
               </div>
               <div className={styles.formGroup}>
                 <label htmlFor="password">Password</label>
-                <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  value={user.password}
-                  onChange={handleChange}
-                />
+                <div className={styles.passwordContainer}>
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    id="password"
+                    name="password"
+                    value={user.password}
+                    onChange={handleChange}
+                  />
+                  <span
+                    className={styles.passwordToggle}
+                    onClick={togglePasswordVisibility}
+                  >
+                    {showPassword ? <FaEyeSlash /> : <FaRegEye />}
+                  </span>
+                </div>
+                {errors.password && (
+                  <p className={styles.error}>{errors.password}</p>
+                )}
               </div>
               <button type="submit" className={styles.saveBtn}>
                 Add User
