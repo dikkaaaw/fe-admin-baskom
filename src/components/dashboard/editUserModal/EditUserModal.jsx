@@ -9,7 +9,7 @@ const EditUserModal = ({ isOpen, onClose, userId }) => {
   const [errors, setErrors] = useState({});
   const [updatedUser, setUpdatedUser] = useState({
     name: "",
-    phone_number: "",
+    phoneNumber: "",
     address: "",
   });
 
@@ -49,16 +49,17 @@ const EditUserModal = ({ isOpen, onClose, userId }) => {
   const validateForm = () => {
     const newErrors = {};
     if (!updatedUser.name) newErrors.name = "Name cannot be empty!";
-    if (!validatePhoneNumber(updatedUser.phone_number)) {
-      newErrors.phone_number = "Phone number must be numeric.";
+    if (!validatePhoneNumber(updatedUser.phoneNumber)) {
+      newErrors.phoneNumber =
+        "Phone number must start with +62 and followed by 8 to 10 digits.";
     }
-    if (!updatedUser.address) newErrors.address = "Address cannot be empty";
+    if (!updatedUser.address) newErrors.address = "Address cannot be empty!";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const validatePhoneNumber = (phoneNumber) => {
-    const phoneNumberRegex = /^\d+$/;
+    const phoneNumberRegex = /^\+628\d{8,10}$/;
     return phoneNumberRegex.test(phoneNumber);
   };
 
@@ -133,18 +134,15 @@ const EditUserModal = ({ isOpen, onClose, userId }) => {
           </div>
           <div className={styles.formGroup}>
             <label htmlFor="phone-number">Phone Number</label>
-            <div className={styles.inputGroup}>
-              <span className={styles.countryCode}>+62</span>
-              <input
-                type="text"
-                id="phone-number"
-                name="phone_number"
-                value={updatedUser.phone_number}
-                onChange={handleInputChange}
-              />
-            </div>
-            {errors.phone_number && (
-              <p className={styles.errorText}>{errors.phone_number}</p>
+            <input
+              type="text"
+              id="phone-number"
+              name="phoneNumber"
+              value={updatedUser.phoneNumber}
+              onChange={handleInputChange}
+            />
+            {errors.phoneNumber && (
+              <p className={styles.errorText}>{errors.phoneNumber}</p>
             )}
           </div>
           <div className={styles.formGroup}>
