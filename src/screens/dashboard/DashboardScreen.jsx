@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import { AreaCards, AreaTable, AreaTop } from "../../components";
-import { FaFilter } from "react-icons/fa";
+import { AreaCards, AreaTable, AreaTop, SearchBar } from "../../components";
 import "../loading.scss";
 
 const Dashboard = () => {
   const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -26,19 +26,12 @@ const Dashboard = () => {
     <div className="content-area">
       <AreaTop title="Dashboard" />
       <AreaCards />
-      <form className="search-bar">
-        <div className="filter-box">
-          <FaFilter className="filter-icon" />
-        </div>
-        <input type="text" placeholder="Search..." className="search-input" />
-        <button type="submit" className="search-button">
-          Search
-        </button>
-      </form>
+      <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
       <AreaTable
         title="Daftar User"
         showAction={false}
         showActionColumn={false}
+        searchQuery={searchQuery}
       />
     </div>
   );
