@@ -1,10 +1,10 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import {
   MdOutlineClose,
-  MdOutlineCurrencyExchange,
   MdOutlineGridView,
   MdOutlineLogout,
   MdOutlinePeople,
+  MdOutlineVerifiedUser,
 } from "react-icons/md";
 import { Link, useLocation } from "react-router-dom";
 import { SidebarContext } from "../../context/SidebarContext";
@@ -94,14 +94,14 @@ const Sidebar = () => {
               </li>
               <li
                 className={`menu-link ${
-                  activeItem === "/transactions" ? "active" : ""
+                  activeItem === "/upgrade-role" ? "active" : ""
                 }`}
               >
-                <Link to="/transactions" className="menu-link">
+                <Link to="/upgrade-role" className="menu-link">
                   <span className="menu-link-icon">
-                    <MdOutlineCurrencyExchange size={18} />
+                    <MdOutlineVerifiedUser size={18} />
                   </span>
-                  <span className="menu-link-text">Kelola Transaksi</span>
+                  <span className="menu-link-text">Upgrade Role</span>
                 </Link>
               </li>
             </ul>
