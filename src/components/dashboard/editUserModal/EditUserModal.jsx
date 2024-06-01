@@ -11,7 +11,14 @@ const EditUserModal = ({ isOpen, onClose, userId }) => {
     name: "",
     phoneNumber: "",
     address: "",
+    roles: [],
   });
+
+  const allRoles = [
+    { id: 1, name: "User" },
+    { id: 2, name: "Admin" },
+    { id: 3, name: "Penjual" },
+  ];
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,7 +29,9 @@ const EditUserModal = ({ isOpen, onClose, userId }) => {
             Authorization: `Bearer ${token}`,
           },
         });
-        setUpdatedUser(response.data);
+        const user = response.data;
+        const userRoles = user.roles.map((role) => role.id);
+        setUpdatedUser({ ...user, roles: userRoles });
       } catch (error) {
         console.error("Error fetching user data: ", error);
       }
@@ -32,6 +41,19 @@ const EditUserModal = ({ isOpen, onClose, userId }) => {
       fetchData();
     }
   }, [isOpen, userId]);
+
+  const handleRoleChange = (e) => {
+    const selectedRoleId = parseInt(e.target.value);
+    setUpdatedUser((prevUser) => ({
+      ...prevUser,
+      roles: [selectedRoleId],
+    }));
+
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      roles: "",
+    }));
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -63,6 +85,50 @@ const EditUserModal = ({ isOpen, onClose, userId }) => {
     return phoneNumberRegex.test(phoneNumber);
   };
 
+  const updateUserRoles = async () => {
+    const token = localStorage.getItem("token");
+    const userRoles = updatedUser.roles;
+
+    try {
+      const response = await axios.get(`/api/users/${userId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const existingRoles = response.data.roles.map((role) => role.id);
+
+      // Add new roles
+      for (const roleId of userRoles) {
+        if (!existingRoles.includes(roleId)) {
+          await axios.post(
+            "/api/user/roles/add",
+            { userId, roleId },
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+        }
+      }
+
+      for (const roleId of existingRoles) {
+        if (!userRoles.includes(roleId)) {
+          await axios.delete("/api/user/roles/delete", {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+            data: { userId, roleId },
+          });
+        }
+      }
+    } catch (error) {
+      console.error("Error updating user roles: ", error);
+      throw error;
+    }
+  };
+
   const handleSaveChanges = async (e) => {
     e.preventDefault();
     const token = localStorage.getItem("token");
@@ -77,6 +143,9 @@ const EditUserModal = ({ isOpen, onClose, userId }) => {
           Authorization: `Bearer ${token}`,
         },
       });
+
+      await updateUserRoles();
+
       toast.success("Changes saved successfully!", {
         autoClose: 1500,
         closeOnClick: true,
@@ -144,6 +213,26 @@ const EditUserModal = ({ isOpen, onClose, userId }) => {
             {errors.phoneNumber && (
               <p className={styles.errorText}>{errors.phoneNumber}</p>
             )}
+          </div>
+          <div className={styles.formGroup}>
+            <label htmlFor="role">Add Role</label>
+            <select
+              id="role"
+              name="roles"
+              value={updatedUser.roles || ""}
+              onChange={handleRoleChange}
+              className={styles.selectRole}
+            >
+              <option disabled value="">
+                Select a role
+              </option>
+              {allRoles.map((role) => (
+                <option key={role.id} value={role.id}>
+                  {role.name}
+                </option>
+              ))}
+            </select>
+            {errors.roles && <p className={styles.errorText}>{errors.roles}</p>}
           </div>
           <div className={styles.formGroup}>
             <label htmlFor="address">Address</label>
