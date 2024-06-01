@@ -27,7 +27,11 @@ const AddUserModal = ({ isOpen, onClose }) => {
     let formErrors = {};
     if (!user.name) formErrors.name = "Name is required!";
     if (!user.email) formErrors.email = "Email is required!";
+    else if (!/\S+@\S+\.\S+/.test(user.email))
+      formErrors.email = "Invalid email format!";
     if (!user.password) formErrors.password = "Password is required!";
+    else if (user.password.length < 8)
+      formErrors.password = "Password must be at least 8 characters long!";
     setErrors(formErrors);
     return Object.keys(formErrors).length === 0;
   };
