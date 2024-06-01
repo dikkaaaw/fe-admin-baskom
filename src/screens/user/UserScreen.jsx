@@ -4,6 +4,7 @@ import "../loading.scss";
 
 const User = () => {
   const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -25,8 +26,12 @@ const User = () => {
     <div className="content-area">
       <AreaTop title="Kelola User" />
       <AreaCards />
-      <SearchBar />
-      <AreaTable title="Kelola User" buttonTitle="Create User" />
+      <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+      <AreaTable
+        title="Kelola User"
+        buttonTitle="Create User"
+        searchQuery={searchQuery}
+      />
     </div>
   );
 };
