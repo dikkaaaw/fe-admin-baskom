@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import AreaTableAction from "./AreaTableAction";
-import AddUserModal from "../addUserModal/AddUserModal";
 import UpgradeRoleModalAcc from "../upgradeRoleModal/UpgradeRoleModalAcc";
 import UpgradeRoleModalReject from "../upgradeRoleModal/UpgradeRoleModalReject";
 import ViewDocModal from "../viewDocModal/ViewDocModal";
@@ -23,14 +22,12 @@ const TABLE_HEADS_DEFAULT = [
 
 const AreaTable = ({
   title,
-  buttonTitle,
   showAction,
   showActionColumn,
   searchQuery,
   upgradeRole,
 }) => {
   const [tableData, setTableData] = useState([]);
-  const [isModalCreateOpen, setModalCreateOpen] = useState(false);
   const [isModalAccOpen, setModalAccOpen] = useState(false);
   const [isModalRejectOpen, setModalRejectOpen] = useState(false);
   const [filteredTableData, setFilteredTableData] = useState([]);
@@ -54,11 +51,6 @@ const AreaTable = ({
   const closeDocumentModal = () => {
     setDocumentModalOpen(false);
   };
-
-  const openModalCreate = () => {
-    setModalCreateOpen(true);
-  };
-  const closeModalCreate = () => setModalCreateOpen(false);
 
   const openModalAcc = (upgradeRoleId) => {
     if (upgradeRoleId !== undefined) {
@@ -124,7 +116,7 @@ const AreaTable = ({
           return {
             ...user,
             upgradeRoleData: userUpgradeRole || null,
-            documentUrl: userUpgradeRole ? userUpgradeRole.document_url : null,
+            documentUrl: userUpgradeRole ? userUpgradeRole.documentUrl : null,
           };
         });
 
@@ -175,11 +167,6 @@ const AreaTable = ({
         <button className="refresh-btn" onClick={handleRefresh}>
           <FaSync size={20} />
         </button>
-        {showAction && (
-          <button className="create-btn" onClick={() => openModalCreate()}>
-            {buttonTitle}
-          </button>
-        )}
       </div>
       <div className="data-table-diagram">
         <table>
@@ -209,6 +196,11 @@ const AreaTable = ({
                   <td>{dataItem.email}</td>
                   <td>{dataItem.name}</td>
                   <td>{dataItem.roles[0].name}</td>
+                  {showAction && showActionColumn && (
+                    <td className="dt-cell-action">
+                      <AreaTableAction userId={dataItem.id} />
+                    </td>
+                  )}
                   {dataItem.upgradeRoleData && (
                     <td>
                       <button
@@ -217,11 +209,6 @@ const AreaTable = ({
                       >
                         View
                       </button>
-                    </td>
-                  )}
-                  {showAction && showActionColumn && (
-                    <td className="dt-cell-action">
-                      <AreaTableAction userId={dataItem.id} />
                     </td>
                   )}
                   {upgradeRole && dataItem.upgradeRoleData && (
@@ -256,7 +243,6 @@ const AreaTable = ({
           </tbody>
         </table>
       </div>
-      <AddUserModal isOpen={isModalCreateOpen} onClose={closeModalCreate} />
       <UpgradeRoleModalAcc
         isOpen={isModalAccOpen}
         onClose={closeModalAcc}
@@ -282,7 +268,6 @@ const AreaTable = ({
 
 AreaTable.propTypes = {
   title: PropTypes.string.isRequired,
-  buttonTitle: PropTypes.string.isRequired,
   showAction: PropTypes.bool,
   showActionColumn: PropTypes.bool,
   upgradeRole: PropTypes.bool,
