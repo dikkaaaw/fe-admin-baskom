@@ -1,8 +1,10 @@
 import { useState } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
+import { toast, ToastContainer } from "react-toastify";
 import { FaExclamationTriangle } from "react-icons/fa";
 import styles from "./upgradeRoleModalAcc.module.scss";
+import "react-toastify/dist/ReactToastify.css";
 
 const UpgradeRoleModalAcc = ({
   onClose,
@@ -36,11 +38,22 @@ const UpgradeRoleModalAcc = ({
             : item
         );
         setTableData(updatedData);
-        onClose();
-        window.location.reload();
+        toast.success("Upgrade role accepted!", {
+          autoClose: 1500,
+          closeOnClick: true,
+          hideProgressBar: true,
+          pauseOnHover: false,
+          onClose: () => window.location.reload(),
+        });
       }
     } catch (error) {
       console.error("Error updating upgrade role status: ", error);
+      toast.error("Error updating upgrade role status!", {
+        autoClose: 1500,
+        closeOnClick: true,
+        hideProgressBar: true,
+        pauseOnHover: false,
+      });
     } finally {
       setLoading(false);
     }
@@ -50,6 +63,7 @@ const UpgradeRoleModalAcc = ({
     <>
       {isOpen && (
         <div className="modal-overlay">
+          <ToastContainer />
           <div className={styles.modal}>
             <div className={styles.alertIcon}>
               <FaExclamationTriangle size={40} />
