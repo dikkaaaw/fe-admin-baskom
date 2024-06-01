@@ -70,16 +70,13 @@ const DetailUserModal = ({ isOpen, onClose, userId }) => {
           </div>
           <div className={styles.formGroup}>
             <label htmlFor="phone-number">Phone Number</label>
-            <div className={styles.inputGroup}>
-              <span className={styles.countryCode}>+62</span>
-              <input
-                type="text"
-                id="phone-number"
-                name="phone-number"
-                value={user.phone_number}
-                readOnly
-              />
-            </div>
+            <input
+              type="text"
+              id="phone-number"
+              name="phone-number"
+              value={user.phone_number}
+              readOnly
+            />
           </div>
           <div className={styles.formGroup}>
             <label htmlFor="address">Address</label>
