@@ -113,16 +113,16 @@ const EditUserModal = ({ isOpen, onClose, userId }) => {
         }
       }
 
-      for (const roleId of existingRoles) {
-        if (!userRoles.includes(roleId)) {
-          await axios.delete("/api/user/roles/delete", {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-            data: { userId, roleId },
-          });
-        }
-      }
+      // for (const roleId of existingRoles) {
+      //   if (!userRoles.includes(roleId)) {
+      //     await axios.delete("/api/user/roles/delete", {
+      //       headers: {
+      //         Authorization: `Bearer ${token}`,
+      //       },
+      //       data: { userId, roleId },
+      //     });
+      //   }
+      // }
     } catch (error) {
       console.error("Error updating user roles: ", error);
       throw error;
