@@ -1,18 +1,40 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { MdArrowDropDown, MdOutlineMenu } from "react-icons/md";
 import { SidebarContext } from "../../../context/SidebarContext";
 import UserProfileModal from "../userProfileModal/UserProfileModal";
 import PropTypes from "prop-types";
-const avatarUrl =
-  "https://ui-avatars.com/api/?background=random&size=512&name=John Doe";
 import "./AreaTop.scss";
+import axios from "axios";
 
 const AreaTop = ({ title }) => {
   const { openSidebar } = useContext(SidebarContext);
+  const [user, setUser] = useState(false);
   const [isModalOpen, setModalOpen] = useState(false);
 
   const openModal = () => setModalOpen(true);
   const closeModal = () => setModalOpen(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const token = localStorage.getItem("token");
+      try {
+        const response = await axios.get(`/api/profile`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setUser(response.data);
+      } catch (error) {
+        console.error("Error fetching data: ", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const avatarUrl = `https://ui-avatars.com/api/?background=random&size=512&name=${user?.name}`;
+
+  if (!user) return null;
 
   return (
     <section className="content-area-top">
