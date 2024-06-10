@@ -28,10 +28,13 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("https://baskom-api.up.railway.app", {
-        email,
-        password,
-      });
+      const response = await axios.post(
+        "https://baskom-api.up.railway.app/api/v1/login",
+        {
+          email,
+          password,
+        }
+      );
       localStorage.setItem("token", response.data.token);
       setError("");
       toast.success("Login successful!", {
