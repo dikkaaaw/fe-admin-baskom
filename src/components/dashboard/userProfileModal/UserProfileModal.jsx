@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import axios from "axios";
 import PropTypes from "prop-types";
 import styles from "./userProfileModal.module.scss";
 
@@ -6,19 +7,24 @@ const UserProfileModal = ({ isOpen, onClose }) => {
   const [user, setUser] = useState({});
 
   useEffect(() => {
-    // Fake data pengguna
-    const fakeUser = {
-      name: "John Doe",
-      email: "john.doe@example.com",
-      phone_number: "8123456789",
-      address: "123 Main St, Anytown, USA",
+    const fetchData = async () => {
+      const token = localStorage.getItem("token");
+      try {
+        const response = await axios.get(`/api/profile`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setUser(response.data);
+      } catch (error) {
+        console.error("Error fetching data: ", error);
+      }
     };
 
-    // Set data pengguna ke state
-    setUser(fakeUser);
+    fetchData();
   }, []);
 
-  const avatarUrl = `https://ui-avatars.com/api/?background=random&size=512&name=${encodeURIComponent(user.name || "")}`;
+  const avatarUrl = `https://ui-avatars.com/api/?background=random&size=512&name=${user.name}`;
 
   if (!isOpen) return null;
 
