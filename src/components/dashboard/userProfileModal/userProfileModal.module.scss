@@ -61,24 +61,13 @@ form {
     }
 
     .inputGroup {
-      display: flex;
       align-items: center;
-
-      .countryCode {
-        background-color: #e4e8ef;
-        border: 1px solid #ccc;
-        border-right: none;
-        padding: 8px 12px;
-        font-size: 14px;
-        border-radius: 4px 0 0 4px;
-      }
 
       input {
         flex: 1;
         padding: 8px;
         border: 1px solid #ccc;
-        border-left: none;
-        border-radius: 0 4px 4px 0;
+        border-radius:4px;
         width: 100%;
       }
     }
