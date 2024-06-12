@@ -43,7 +43,7 @@ const AddUserModal = ({ isOpen, onClose }) => {
     }
     const token = localStorage.getItem("token");
     try {
-      await axios.post("/api/users", user, {
+      await axios.post("https://baskom-api.up.railway.app/api/v1/users", user, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
