@@ -24,11 +24,14 @@ const EditUserModal = ({ isOpen, onClose, userId }) => {
     const fetchData = async () => {
       const token = localStorage.getItem("token");
       try {
-        const response = await axios.get(`/api/users/${userId}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await axios.get(
+          `https://baskom-api.up.railway.app/api/v1/users/${userId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
         const user = response.data;
         const userRoles = user.roles.map((role) => role.id);
         setUpdatedUser({ ...user, roles: userRoles });
@@ -90,11 +93,14 @@ const EditUserModal = ({ isOpen, onClose, userId }) => {
     const userRoles = updatedUser.roles;
 
     try {
-      const response = await axios.get(`/api/users/${userId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.get(
+        `https://baskom-api.up.railway.app/api/v1/users/${userId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       const existingRoles = response.data.roles.map((role) => role.id);
 
@@ -102,7 +108,7 @@ const EditUserModal = ({ isOpen, onClose, userId }) => {
       for (const roleId of userRoles) {
         if (!existingRoles.includes(roleId)) {
           await axios.post(
-            "/api/user/roles/add",
+            "https://baskom-api.up.railway.app/api/v1/user/roles/add",
             { userId, roleId },
             {
               headers: {
@@ -138,11 +144,15 @@ const EditUserModal = ({ isOpen, onClose, userId }) => {
     }
 
     try {
-      await axios.put(`/api/users/${userId}`, updatedUser, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      await axios.put(
+        `https://baskom-api.up.railway.app/api/v1/users/${userId}`,
+        updatedUser,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       await updateUserRoles();
 
@@ -205,9 +215,9 @@ const EditUserModal = ({ isOpen, onClose, userId }) => {
             <label htmlFor="phone-number">Phone Number</label>
             <input
               type="text"
-              id="phone-number"
-              name="phoneNumber"
-              value={updatedUser.phoneNumber}
+              id="phone_number"
+              name="phone_number"
+              value={updatedUser.phone_number}
               onChange={handleInputChange}
             />
             {errors.phoneNumber && (
