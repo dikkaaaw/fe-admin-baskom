@@ -86,12 +86,12 @@ const AreaTable = ({
       const token = localStorage.getItem("token");
       try {
         const [usersResponse, upgradeRolesResponse] = await Promise.all([
-          axios.get("/api/users", {
+          axios.get("https://baskom-api.up.railway.app/api/v1/users", {
             headers: {
               Authorization: `Bearer ${token}`,
             },
           }),
-          axios.get("/api/upgrade-roles", {
+          axios.get("https://baskom-api.up.railway.app/api/v1/upgrade-roles", {
             headers: {
               Authorization: `Bearer ${token}`,
             },
