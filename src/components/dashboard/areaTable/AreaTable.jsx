@@ -60,11 +60,14 @@ const AreaTable = ({
       setLoading(true);
       const token = localStorage.getItem("token");
       try {
-        const response = await axios.get("/api/users", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await axios.get(
+          "https://baskom-api.up.railway.app/api/v1/users",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
         setTableData(response.data);
 
         const filteredData = response.data.filter(
@@ -83,11 +86,14 @@ const AreaTable = ({
     const fetchUpgradeRoles = async () => {
       const token = localStorage.getItem("token");
       try {
-        const response = await axios.get("/api/upgrade-roles", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await axios.get(
+          "https://baskom-api.up.railway.app/api/v1/upgrade-roles",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
         setUpgradeRoles(response.data);
         console.log(response.data);
       } catch (error) {
