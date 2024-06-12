@@ -18,11 +18,14 @@ const AreaTop = ({ title }) => {
     const fetchData = async () => {
       const token = localStorage.getItem("token");
       try {
-        const response = await axios.get(`/api/profile`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await axios.get(
+          `https://baskom-api.up.railway.app/api/v1/profile`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
         setUser(response.data);
       } catch (error) {
         console.error("Error fetching data: ", error);
