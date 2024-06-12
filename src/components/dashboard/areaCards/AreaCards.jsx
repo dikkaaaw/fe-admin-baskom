@@ -10,11 +10,14 @@ const AreaCards = () => {
     const fetchData = async () => {
       const token = localStorage.getItem("token");
       try {
-        const response = await axios.get("/api/users", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await axios.get(
+          "https://baskom-api.up.railway.app/api/v1/users",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
         setActiveUserCount(response.data.length);
       } catch (error) {
         console.error("Error fetching user data: ", error);
