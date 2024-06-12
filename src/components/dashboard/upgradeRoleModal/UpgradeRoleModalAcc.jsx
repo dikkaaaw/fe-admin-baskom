@@ -20,7 +20,7 @@ const UpgradeRoleModalAcc = ({
       setLoading(true);
       const token = localStorage.getItem("token");
       const response = await axios.put(
-        `/api/upgrade-roles/${upgradeRoleId}`,
+        `https://baskom-api.up.railway.app/api/v1/upgrade-roles/${upgradeRoleId}`,
         { status: "accept" },
         {
           headers: {
