@@ -9,11 +9,14 @@ const DeleteUserModal = ({ userId, onClose, isOpen }) => {
   const handleDelete = async () => {
     const token = localStorage.getItem("token");
     try {
-      await axios.delete(`/api/users/${userId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      await axios.delete(
+        `https://baskom-api.up.railway.app/api/v1/users/${userId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       toast.success("User deleted successfully!", {
         autoClose: 1500,
         closeOnClick: true,
