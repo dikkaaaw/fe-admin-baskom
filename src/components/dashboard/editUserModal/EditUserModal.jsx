@@ -84,7 +84,7 @@ const EditUserModal = ({ isOpen, onClose, userId }) => {
   };
 
   const validatePhoneNumber = (phoneNumber) => {
-    const phoneNumberRegex = /^\+628\d{8,10}$/;
+    const phoneNumberRegex = /^\+628\d{8,12}$/;
     return phoneNumberRegex.test(phoneNumber);
   };
 
