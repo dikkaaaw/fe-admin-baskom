@@ -1,13 +1,7 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import {
-  FaRegEye,
-  FaEyeSlash,
-  FaEnvelope,
-  FaLock,
-  FaGoogle,
-} from "react-icons/fa";
+import { FaRegEye, FaEyeSlash, FaEnvelope, FaLock } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import imgLogin from "../../../assets/images/img-login.jpg";
@@ -119,7 +113,7 @@ const Login = () => {
           <button className="submit-button" type="submit">
             Log In
           </button>
-          <div className="divider">
+          {/* <div className="divider">
             <p>─────</p>
             <p className="divider-text">Or</p>
             <p>─────</p>
@@ -128,7 +122,7 @@ const Login = () => {
             <button className="google-button" type="button">
               <FaGoogle className="google-icon" /> Sign in with Google
             </button>
-          </Link>
+          </Link> */}
         </form>
       </div>
     </div>
