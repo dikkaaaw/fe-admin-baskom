@@ -9,7 +9,7 @@ const EditUserModal = ({ isOpen, onClose, userId }) => {
   const [errors, setErrors] = useState({});
   const [updatedUser, setUpdatedUser] = useState({
     name: "",
-    // phoneNumber: "",
+    phoneNumber: "",
     address: "",
     roles: [],
   });
@@ -74,19 +74,19 @@ const EditUserModal = ({ isOpen, onClose, userId }) => {
   const validateForm = () => {
     const newErrors = {};
     if (!updatedUser.name) newErrors.name = "Name cannot be empty!";
-    // if (!validatePhoneNumber(updatedUser.phoneNumber)) {
-    //   newErrors.phoneNumber =
-    //     "Phone number must start with +62 and followed by 8 to 10 digits.";
-    // }
+    if (!validatePhoneNumber(updatedUser.phoneNumber)) {
+      newErrors.phoneNumber =
+        "Phone number must start with +62 and followed by 8 to 10 digits.";
+    }
     if (!updatedUser.address) newErrors.address = "Address cannot be empty!";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  // const validatePhoneNumber = (phoneNumber) => {
-  //   const phoneNumberRegex = /^\+628\d{8,12}$/;
-  //   return phoneNumberRegex.test(phoneNumber);
-  // };
+  const validatePhoneNumber = (phoneNumber) => {
+    const phoneNumberRegex = /^\+628\d{8,12}$/;
+    return phoneNumberRegex.test(phoneNumber);
+  };
 
   const updateUserRoles = async () => {
     const token = localStorage.getItem("token");
@@ -212,11 +212,11 @@ const EditUserModal = ({ isOpen, onClose, userId }) => {
             />
           </div>
           <div className={styles.formGroup}>
-            <label htmlFor="phone-number">Phone Number</label>
+            <label htmlFor="phoneNumber">Phone Number</label>
             <input
               type="text"
-              id="phone_number"
-              name="phone_number"
+              id="phoneNumber"
+              name="phoneNumber"
               value={updatedUser.phone_number}
               onChange={handleInputChange}
             />
