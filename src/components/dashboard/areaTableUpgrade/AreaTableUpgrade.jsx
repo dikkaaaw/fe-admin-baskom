@@ -34,6 +34,7 @@ const AreaTable = ({
   const [isDocumentModalOpen, setDocumentModalOpen] = useState(false);
   const [selectedDocumentUrl, setSelectedDocumentUrl] = useState("");
   const [selectedUpgradeRoleId, setSelectedUpgradeRoleId] = useState(null);
+  const [selectedUserId, setSelectedUserId] = useState(null);
   const [refreshKey, setRefreshKey] = useState(0);
   const [isLoading, setLoading] = useState(false);
 
@@ -52,10 +53,11 @@ const AreaTable = ({
     setDocumentModalOpen(false);
   };
 
-  const openModalAcc = (upgradeRoleId) => {
+  const openModalAcc = (upgradeRoleId, userId) => {
     if (upgradeRoleId !== undefined) {
       setModalAccOpen(true);
       setSelectedUpgradeRoleId(upgradeRoleId);
+      setSelectedUserId(userId); // Set selectedUserId saat membuka modal
     } else {
       console.error("upgradeRoleId is undefined");
     }
@@ -64,6 +66,7 @@ const AreaTable = ({
   const closeModalAcc = () => {
     setModalAccOpen(false);
     setSelectedUpgradeRoleId(null);
+    setSelectedUserId(null); // Reset selectedUserId saat menutup modal
   };
 
   const openModalReject = (upgradeRoleId) => {
@@ -216,7 +219,7 @@ const AreaTable = ({
                       <button
                         className="btnAcc"
                         onClick={() =>
-                          openModalAcc(dataItem.upgradeRoleData.id)
+                          openModalAcc(dataItem.upgradeRoleData.id, dataItem.id)
                         }
                       >
                         Accept
@@ -248,6 +251,7 @@ const AreaTable = ({
         onClose={closeModalAcc}
         upgradeRoleId={selectedUpgradeRoleId}
         tableData={tableData}
+        userId={selectedUserId}
         setTableData={setTableData}
       />
       <UpgradeRoleModalReject
