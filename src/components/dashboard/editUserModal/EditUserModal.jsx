@@ -13,7 +13,6 @@ const EditUserModal = ({ isOpen, onClose, userId }) => {
     address: "",
     roles: [],
   });
-
   const allRoles = [
     { id: 1, name: "User" },
     { id: 2, name: "Admin" },
