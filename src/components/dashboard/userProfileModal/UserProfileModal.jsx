@@ -118,6 +118,7 @@ const UserProfileModal = ({ isOpen, onClose }) => {
               name="email"
               value={user.email}
               onChange={handleInputChange}
+              disabled
             />
           </div>
           <div className={styles.formGroup}>
