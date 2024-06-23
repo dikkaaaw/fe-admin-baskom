@@ -11,6 +11,7 @@ const UpgradeRoleModalAcc = ({
   isOpen,
   upgradeRoleId,
   tableData,
+  userId,
   setTableData,
 }) => {
   const [isLoading, setLoading] = useState(false);
@@ -19,6 +20,8 @@ const UpgradeRoleModalAcc = ({
     try {
       setLoading(true);
       const token = localStorage.getItem("token");
+
+      // Mengubah status upgrade role
       const response = await axios.put(
         `https://baskom-api.up.railway.app/api/v1/upgrade-roles/${upgradeRoleId}`,
         { status: "accept" },
@@ -28,7 +31,22 @@ const UpgradeRoleModalAcc = ({
           },
         }
       );
+
       if (response.status === 200) {
+        // Menambahkan role baru ke user
+        await axios.post(
+          "https://baskom-api.up.railway.app/api/v1/user/roles/add",
+          {
+            userId: userId,
+            roleId: 3,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
         const updatedData = tableData.map((item) =>
           item.id === upgradeRoleId
             ? {
@@ -96,6 +114,7 @@ UpgradeRoleModalAcc.propTypes = {
   upgradeRoleId: PropTypes.number.isRequired,
   tableData: PropTypes.array.isRequired,
   setTableData: PropTypes.func.isRequired,
+  userId: PropTypes.number.isRequired,
 };
 
 export default UpgradeRoleModalAcc;
